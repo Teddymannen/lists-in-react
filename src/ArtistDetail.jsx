@@ -7,7 +7,7 @@ export default function ArtistDetail() {
 
   let artistToDisplay = favoriteArtists.find(artist => artist.id === +id);
 
-  let { firstName, lastName, bandName } = artistToDisplay || {};
+  let { firstName, lastName, bandName, description, imgUrl } = artistToDisplay || {};
 
   let name = bandName ? bandName : firstName + ' ' + lastName;
 
@@ -16,8 +16,10 @@ export default function ArtistDetail() {
       <p>Artist not found...</p> :
       <>
         <h3>{name}</h3>
-        <p>A description and an image would be nice...</p>
+        <p>{description}</p>
+        <img src={imgUrl} alt={name} width={'20%'} />
       </>
     }
+
   </>;
 }
