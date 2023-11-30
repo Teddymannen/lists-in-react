@@ -1,4 +1,4 @@
-import { Link, useOutlet, useOutletContext, useParams } from "react-router-dom";
+import { Link, useOutletContext, useParams } from "react-router-dom";
 
 export default function ArtistDetail() {
 

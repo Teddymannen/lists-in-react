@@ -1,6 +1,5 @@
 import { Link, useOutletContext } from "react-router-dom";
 import { useState } from 'react';
-import ArtistDetail from "./ArtistDetail";
 import ArtistForm from "./ArtistForm";
 
 export default function ArtistList() {
