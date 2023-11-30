@@ -20,15 +20,15 @@ export default function ArtistForm({ submitForm, submitButtonText, defaultValues
     {selectedOption === 'band' ?
       <>
         <label>
-          <input name='bandName' type="text" defaultValue={defaultValues.bandName} placeholder="Band name" />
+          <input name='bandName' type="text" defaultValue={defaultValues.bandName} placeholder="Band name" required />
         </label>
       </> :
       <>
         <label>
-          <input name='firstName' type="text" defaultValue={defaultValues.firstName} placeholder="First name" />
+          <input name='firstName' type="text" defaultValue={defaultValues.firstName} placeholder="First name" required />
         </label>
         <label>
-          <input name='lastName' type="text" defaultValue={defaultValues.lastName} placeholder="Last name" />
+          <input name='lastName' type="text" defaultValue={defaultValues.lastName} placeholder="Last name" required />
         </label>
       </>
     }
