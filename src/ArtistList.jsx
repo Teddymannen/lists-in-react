@@ -27,6 +27,11 @@ export default function ArtistList() {
     form.reset();
   }
 
+  function onEditClick(id) {
+    if (currentEdit === id) { setCurrentEdit(-1); return; }
+    setCurrentEdit(id);
+  }
+
   function onRemoveClick(id) {
     if (currentEdit === id) { setCurrentEdit(-1); }
     removeArtist(id);
@@ -38,7 +43,7 @@ export default function ArtistList() {
     <h2>Favorite artists {currentEdit}</h2>
     {favoriteArtists.map(({ id, firstName, lastName, bandName, description, imgUrl }) =>
       <div key={id} className={`${bandName ? 'band' : 'artist'}${id === currentEdit ? ' edit' : ''}`} >
-        <button onClick={() => { setCurrentEdit(id) }} >Edit</button>
+        <button onClick={() => { onEditClick(id) }} >{id === currentEdit ? 'Close' : 'Edit'}</button>
         <button onClick={() => { onRemoveClick(id) }}>Remove</button>
         {
           id === currentEdit ?
