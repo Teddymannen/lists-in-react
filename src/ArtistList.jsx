@@ -1,14 +1,9 @@
 import { Link, useOutletContext } from "react-router-dom";
 import { useState } from 'react';
 import ArtistDetail from "./ArtistDetail";
+import ArtistForm from "./ArtistForm";
 
 export default function ArtistList() {
-
-  const [selectedOption, setSelectedOption] = useState('artist');
-
-  const handleChange = (event) => {
-    setSelectedOption(event.target.value);
-  };
 
   let { favoriteArtists, addArtist } = useOutletContext();
 
@@ -34,36 +29,6 @@ export default function ArtistList() {
       </Link>
     )}
     {/* Add artist form */}
-    <form onSubmit={submitForm}>
-      <label>
-        {/* dropdown menu */}
-        <select className='bandOrArtist' value={selectedOption} onChange={handleChange}>
-          <option value="artist">Artist</option>
-          <option value="band">Band</option>
-        </select>
-      </label>
-      {selectedOption === 'band' ?
-        <>
-          <label>
-            <input name='bandName' type="text" placeholder="Band name" />
-          </label>
-        </> :
-        <>
-          <label>
-            <input name='firstName' type="text" placeholder="First name" />
-          </label>
-          <label>
-            <input name='lastName' type="text" placeholder="Last name" />
-          </label>
-        </>
-      }
-      <label>
-        <input name='description' type="text" placeholder="Description" />
-      </label>
-      <label>
-        <input name='imgUrl' type="text" placeholder="Image URL" />
-      </label>
-      <button type='submit'>Add</button>
-    </form>
+    <ArtistForm submitForm={submitForm} />
   </>;
 }
