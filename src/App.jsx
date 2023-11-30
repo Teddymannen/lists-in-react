@@ -17,6 +17,15 @@ export default function App() {
     artist.id = favoriteArtists.length + 1;
     setFavoriteArtists([...favoriteArtists, artist]);
   }
+  function editArtist(id, artist) {
+    artist.id = id; // just in case
+    let otherArtists = favoriteArtists.filter(artist => artist.id !== id);
+    setFavoriteArtists([...otherArtists, artist].sort((a, b) => a.id - b.id));
+  }
+  function removeArtist(id) {
+    let otherArtists = favoriteArtists.filter(artist => artist.id !== id);
+    setFavoriteArtists(otherArtists);
+  }
   // you could write some functions here to add, remove, and edit an artist
   // -> the functions to need to create a new array
   // based on the old one, but with changes and then call
@@ -27,7 +36,7 @@ export default function App() {
     {/* Maybe we should have a header component here and a nav to 
         a page where you can create a new artist? */}
     <main>
-      <Outlet context={{ favoriteArtists, setFavoriteArtists, addArtist }} />
+      <Outlet context={{ favoriteArtists, setFavoriteArtists, addArtist, editArtist, removeArtist }} />
     </main>
   </>
 }

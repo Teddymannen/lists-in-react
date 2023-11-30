@@ -5,7 +5,9 @@ import ArtistForm from "./ArtistForm";
 
 export default function ArtistList() {
 
-  let { favoriteArtists, addArtist } = useOutletContext();
+  const [currentEdit, setCurrentEdit] = useState(-1);
+
+  let { favoriteArtists, addArtist, editArtist, removeArtist } = useOutletContext();
 
   function submitForm(event) {
     event.preventDefault();
@@ -16,19 +18,32 @@ export default function ArtistList() {
     form.reset();
   }
 
+  function submitEditForm(event) {
+    event.preventDefault();
+    let form = event.target;
+    let formData = new FormData(form);
+    let newArtist = Object.fromEntries(formData);
+    editArtist(currentEdit, newArtist);
+    setCurrentEdit(-1);
+    form.reset();
+  }
+
   return <>
-    <h2>Favorite artists</h2>
-    {favoriteArtists.map(({ id, firstName, lastName, bandName }) =>
-      <Link key={id} className={bandName ? 'band' : 'artist'} to={'/artist-detail/' + id}>
-        <button>Edit</button>
-        <button>Remove</button>
-        {bandName ?
-          <p>{bandName}</p> :
-          <p>{firstName} {lastName}</p>
-        }
-      </Link>
-    )}
     {/* Add artist form */}
-    <ArtistForm submitForm={submitForm} />
+    <ArtistForm submitForm={submitForm} submitButtonText={'Add'} />
+    <h2>Favorite artists {currentEdit}</h2>
+    {favoriteArtists.map(({ id, firstName, lastName, bandName, description, imgUrl }) =>
+      <div key={id} className={`${bandName ? 'band' : 'artist'}${id === currentEdit ? ' edit' : ''}`} >
+        <button onClick={() => { setCurrentEdit(id) }} >Edit</button>
+        <button onClick={() => { removeArtist(id) }}>Remove</button>
+        {
+          id === currentEdit ?
+            <ArtistForm submitForm={submitEditForm} submitButtonText={'Save'} defaultValues={{ bandName, firstName, lastName, description, imgUrl }} /> :
+            bandName ?
+              <Link to={'/artist-detail/' + id}><p>{bandName}</p></Link> :
+              <Link to={'/artist-detail/' + id}><p>{firstName} {lastName}</p></Link>
+        }
+      </div>
+    )}
   </>;
 }

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 
-export default function ArtistForm({ submitForm }) {
 
-  const [selectedOption, setSelectedOption] = useState('artist');
+
+export default function ArtistForm({ submitForm, submitButtonText, defaultValues }) {
+  if (!defaultValues) { defaultValues = { firstName: '', lastName: '', bandName: '', description: '', imgUrl: '' } }
+  const [selectedOption, setSelectedOption] = useState(defaultValues.bandName ? 'band' : 'artist');
   const handleChange = (event) => {
     setSelectedOption(event.target.value);
   };
@@ -18,24 +20,24 @@ export default function ArtistForm({ submitForm }) {
     {selectedOption === 'band' ?
       <>
         <label>
-          <input name='bandName' type="text" placeholder="Band name" />
+          <input name='bandName' type="text" defaultValue={defaultValues.bandName} placeholder="Band name" />
         </label>
       </> :
       <>
         <label>
-          <input name='firstName' type="text" placeholder="First name" />
+          <input name='firstName' type="text" defaultValue={defaultValues.firstName} placeholder="First name" />
         </label>
         <label>
-          <input name='lastName' type="text" placeholder="Last name" />
+          <input name='lastName' type="text" defaultValue={defaultValues.lastName} placeholder="Last name" />
         </label>
       </>
     }
     <label>
-      <input name='description' type="text" placeholder="Description" />
+      <input name='description' type="text" defaultValue={defaultValues.description} placeholder="Description" />
     </label>
     <label>
-      <input name='imgUrl' type="text" placeholder="Image URL" />
+      <input name='imgUrl' type="text" defaultValue={defaultValues.imgUrl} placeholder="Image URL" />
     </label>
-    <button type='submit'>Add</button>
+    <button type='submit'>{submitButtonText}</button>
   </form>
 };

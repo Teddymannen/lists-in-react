@@ -80,13 +80,27 @@ button:focus-visible {
   margin: 20px;
 }
 
+form {
+  margin: 16px 0 16px 0;
+}
+
 .band {
   background-color: rgb(190, 232, 145);
 }
 
-.artist button,
-.band button {
+.edit {
+  background-color: rgb(77, 98, 218)
+}
+
+.artist>button,
+.band>button {
   float: right;
   margin-top: 10px;
+  margin-left: 20px;
+}
+
+form>button {
+  /* float: right; */
+  /* margin-top: 10px; */
   margin-left: 20px;
 }
