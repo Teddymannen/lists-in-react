@@ -13,7 +13,9 @@ export default function App() {
   ]);
 
   function addArtist(artist) {
-    artist.id = favoriteArtists[favoriteArtists.length - 1].id + 1;
+    if (favoriteArtists.length === 0) { artist.id = 1; }
+    else { artist.id = favoriteArtists[favoriteArtists.length - 1].id + 1; }
+
     setFavoriteArtists([...favoriteArtists, artist]);
   }
   function editArtist(id, artist) {
