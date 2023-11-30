@@ -78,6 +78,7 @@ button:focus-visible {
   border-radius: 20px;
   padding: 20px;
   margin: 20px;
+  min-height: 50px;
 }
 
 form {
