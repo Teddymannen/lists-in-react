@@ -13,7 +13,7 @@ export default function App() {
   ]);
 
   function addArtist(artist) {
-    artist.id = favoriteArtists.length + 1;
+    artist.id = favoriteArtists[favoriteArtists.length - 1].id + 1;
     setFavoriteArtists([...favoriteArtists, artist]);
   }
   function editArtist(id, artist) {
