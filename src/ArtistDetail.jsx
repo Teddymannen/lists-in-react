@@ -1,4 +1,4 @@
-import { useOutlet, useOutletContext, useParams } from "react-router-dom";
+import { Link, useOutlet, useOutletContext, useParams } from "react-router-dom";
 
 export default function ArtistDetail() {
 
@@ -20,6 +20,7 @@ export default function ArtistDetail() {
         <img src={imgUrl} alt={name} width={'20%'} />
       </>
     }
-
+    <br />
+    <Link to={'/'}><button>Go Home</button></Link>
   </>;
 }
