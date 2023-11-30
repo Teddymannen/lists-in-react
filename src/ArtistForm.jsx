@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 
 
@@ -40,4 +40,4 @@ export default function ArtistForm({ submitForm, submitButtonText, defaultValues
     </label>
     <button type='submit'>{submitButtonText}</button>
   </form>
-};
+}
